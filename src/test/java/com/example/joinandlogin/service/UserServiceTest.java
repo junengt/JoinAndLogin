@@ -32,6 +32,7 @@ class UserServiceTest {
     @Commit
     public void joinSuccess() throws Exception {
         JoinUserReqDto joinUserReqDto = new JoinUserReqDto();
+        joinUserReqDto.setLoginId("test001");
         joinUserReqDto.setEmail("test@test.com");
         joinUserReqDto.setName("테스트");
         joinUserReqDto.setNickname("테스트닉네임");
@@ -48,6 +49,7 @@ class UserServiceTest {
     @Test
     public void loginSuccess() throws Exception {
         JoinUserReqDto joinUserReqDto = new JoinUserReqDto();
+        joinUserReqDto.setLoginId("test001");
         joinUserReqDto.setEmail("test@test.com");
         joinUserReqDto.setName("테스트");
         joinUserReqDto.setNickname("테스트닉네임");
@@ -55,7 +57,7 @@ class UserServiceTest {
         joinUserReqDto.setPhoneNumber("01012345678");
 
         LoginUserReqDto loginUserReqDto = new LoginUserReqDto();
-        loginUserReqDto.setEmail("test@test.com");
+        loginUserReqDto.setLoginId("test001");
         loginUserReqDto.setPassword("testPassword");
 
         Long joinUser = userService.joinUser(joinUserReqDto);

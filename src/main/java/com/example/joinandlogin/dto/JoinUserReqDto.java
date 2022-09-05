@@ -9,6 +9,9 @@ import javax.validation.constraints.Size;
 @Data
 public class JoinUserReqDto {
 
+    @NotBlank
+    private String loginId;
+
     @Email
     @NotBlank
     private String email;

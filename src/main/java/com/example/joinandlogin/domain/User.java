@@ -15,7 +15,10 @@ public class User extends BaseEntity {
     @Column(name = "user_id")
     private Long id;
 
-    @Column(name = "user_eamil")
+    @Column(name = "user_login_id")
+    private String loginId;
+
+    @Column(name = "user_email")
     private String email;
 
     @Column(name = "user_nickname")
@@ -31,6 +34,7 @@ public class User extends BaseEntity {
     private String phoneNumber;
 
     public User(JoinUserReqDto joinUserReqDto, String encodedPassword) {
+        this.loginId = joinUserReqDto.getLoginId();
         this.email = joinUserReqDto.getEmail();
         this.nickname = joinUserReqDto.getNickname();
         this.password = encodedPassword;

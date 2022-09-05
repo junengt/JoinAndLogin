@@ -29,7 +29,7 @@ public class UserService {
 
     //로그인
     public Long login(LoginUserReqDto loginUserReqDto) {
-        Optional<User> userOptional = userRepository.findByEmail(loginUserReqDto.getEmail());
+        Optional<User> userOptional = userRepository.findByLoginId(loginUserReqDto.getLoginId());
         if (userOptional.isEmpty()) {
             throw new LoginCheckException("로그인에 실패했습니다.");
         }
