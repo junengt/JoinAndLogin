@@ -19,26 +19,26 @@ public class User extends BaseEntity {
     private String loginId;
 
     @Column(name = "user_email")
-    private String email;
+    private String encodedEmail;
 
     @Column(name = "user_nickname")
     private String nickname;
 
-    @Column(name = "user_password")
-    private String password;
+    @Column(name = "user_enc_password")
+    private String encodedPassword;
 
     @Column(name = "user_name")
     private String name;
 
-    @Column(name = "user_phone_number")
-    private String phoneNumber;
+    @Column(name = "user_enc_phone_number")
+    private String encodedPhoneNumber;
 
-    public User(JoinUserReqDto joinUserReqDto, String encodedPassword) {
+    public User(JoinUserReqDto joinUserReqDto,String encodedEmail,String encodedPhoneNumber, String encodedPassword) {
         this.loginId = joinUserReqDto.getLoginId();
-        this.email = joinUserReqDto.getEmail();
+        this.encodedEmail = encodedEmail;
         this.nickname = joinUserReqDto.getNickname();
-        this.password = encodedPassword;
+        this.encodedPassword = encodedPassword;
         this.name = joinUserReqDto.getName();
-        this.phoneNumber = joinUserReqDto.getPhoneNumber();
+        this.encodedPhoneNumber = encodedPhoneNumber;
     }
 }

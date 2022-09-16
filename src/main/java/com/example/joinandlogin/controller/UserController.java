@@ -17,7 +17,7 @@ public class UserController {
 
     //회원가입
     @PostMapping("/user")
-    public Result joinUser(@RequestBody JoinUserReqDto joinUserReqDto) {
+    public Result joinUser(@RequestBody JoinUserReqDto joinUserReqDto) throws Exception {
         return new Result(userService.joinUser(joinUserReqDto));
     }
 
