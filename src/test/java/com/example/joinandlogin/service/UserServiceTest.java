@@ -29,7 +29,7 @@ class UserServiceTest {
     private UserService userService;
 
     @Test
-    @Commit
+    @Column
     public void joinSuccess() throws Exception {
         JoinUserReqDto joinUserReqDto = new JoinUserReqDto();
         joinUserReqDto.setLoginId("test001");
@@ -47,6 +47,7 @@ class UserServiceTest {
     }
 
     @Test
+    @Commit
     public void loginSuccess() throws Exception {
         JoinUserReqDto joinUserReqDto = new JoinUserReqDto();
         joinUserReqDto.setLoginId("test001");
@@ -60,16 +61,21 @@ class UserServiceTest {
         loginUserReqDto.setLoginId("test001");
         loginUserReqDto.setPassword("testPassword");
 
-        Long joinUser = userService.joinUser(joinUserReqDto);
-        Long loginUser = userService.login(loginUserReqDto);
+        Long joinUserId = userService.joinUser(joinUserReqDto);
+        Long loginUserId = userService.login(loginUserReqDto);
 
-        assertThat(loginUser).isEqualTo(joinUser);
+        assertThat(loginUserId).isEqualTo(joinUserId);
         //콘솔
-        User joinUserPassword = userRepository.findById(joinUser).get();
-        User loginUserPassword = userRepository.findById(loginUser).get();
+        User joinUser = userRepository.findById(joinUserId).get();
+        User loginUser = userRepository.findById(loginUserId).get();
 
-        System.out.println("joinUserPassword.getPassword() = " + joinUserPassword.getPassword());
-        System.out.println("loginUserPassword.getPassword() = " + loginUserPassword.getPassword());
+        System.out.println("joinUser.getEncodedEmail() = " + joinUser.getEncodedEmail());
+        System.out.println("joinUser.getEncodedPassword() = " + joinUser.getEncodedPassword());
+        System.out.println("joinUser.getEncodedPhoneNumber() = " + joinUser.getEncodedPhoneNumber());
+
+        System.out.println("loginUser.getEncodedEmail() = " + loginUser.getEncodedEmail());
+        System.out.println("loginUser.getEncodedPassword() = " + loginUser.getEncodedPassword());
+        System.out.println("loginUser.getEncodedPhoneNumber() = " + loginUser.getEncodedPhoneNumber());
     }
 
 }
