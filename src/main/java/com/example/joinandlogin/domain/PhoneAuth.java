@@ -16,6 +16,9 @@ public class PhoneAuth {
     @Column(name = "phoneAuth_telecom_code")
     private String telecomCode;
 
+    @Column(name = "phoneAuth_enc_phone_number")
+    private String encodedPhoneNumber;
+
     @Column(name = "phoneAuth_authentication")
     private String authentication;
 
