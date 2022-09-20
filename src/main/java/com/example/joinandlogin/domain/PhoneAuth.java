@@ -14,7 +14,8 @@ public class PhoneAuth {
     private Long id;
 
     @Column(name = "phoneAuth_telecom_code")
-    private String telecomCode;
+    @Enumerated(EnumType.STRING)
+    private TelecomCode telecomCode;
 
     @Column(name = "phoneAuth_enc_phone_number")
     private String encodedPhoneNumber;
