@@ -24,10 +24,10 @@ public class UserService {
     //회원 가입
     @Transactional
     public Long joinUser(JoinUserReqDto joinUserReqDto) throws Exception {
-        String encodedEmail = EncryptUtil.encryptAES256(joinUserReqDto.getEmail());
-        String encodedPassword = passwordEncoder.encode(joinUserReqDto.getPassword());
-        String encodedPhoneNumber = EncryptUtil.encryptAES256(joinUserReqDto.getPhoneNumber());
-        return userRepository.save(new User(joinUserReqDto,encodedEmail,encodedPhoneNumber, encodedPassword)).getId();
+        String encryptedEmail = EncryptUtil.encryptAES256(joinUserReqDto.getEmail());
+        String encryptedPassword = passwordEncoder.encode(joinUserReqDto.getPassword());
+        String encryptedPhoneNumber = EncryptUtil.encryptAES256(joinUserReqDto.getPhoneNumber());
+        return userRepository.save(new User(joinUserReqDto,encryptedEmail,encryptedPhoneNumber, encryptedPassword)).getUserId();
     }
 
     //로그인
@@ -38,10 +38,10 @@ public class UserService {
         }
 
         User user = userOptional.get();
-        if(!passwordEncoder.matches(loginUserReqDto.getPassword(), user.getEncodedPassword())) {
+        if(!passwordEncoder.matches(loginUserReqDto.getPassword(), user.getEncryptedPassword())) {
             throw new LoginCheckException("로그인에 실패했습니다.");
         }
-        return user.getId();
+        return user.getUserId();
     }
 
 }
