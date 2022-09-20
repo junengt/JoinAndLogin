@@ -7,6 +7,9 @@ import java.util.Optional;
 
 public interface UserRepository extends JpaRepository<User, Long> {
 
+    //로그인 ID 중복 체크
+    boolean existsByLoginId(String loginId);
+
     //이메일 중복 체크
     boolean existsByEncodedEmail(String encodedEmail);
 
