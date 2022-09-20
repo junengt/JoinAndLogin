@@ -1,5 +1,6 @@
 package com.example.joinandlogin.domain;
 
+import com.example.joinandlogin.dto.JoinPhoneAuthReqDto;
 import lombok.Getter;
 
 import javax.persistence.*;
@@ -26,5 +27,12 @@ public class PhoneAuth {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
     private User user;
+
+    //회원 가입 휴대전화 인증 정보 생성자
+    public PhoneAuth(JoinPhoneAuthReqDto joinPhoneAuthReqDto, String encodedPhoneNumber, String authentication) {
+        this.telecomCode = joinPhoneAuthReqDto.getTelecomCode();
+        this.encodedPhoneNumber = encodedPhoneNumber;
+        this.authentication = authentication;
+    }
 
 }
