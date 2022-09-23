@@ -1,11 +1,12 @@
 package com.example.joinandlogin.dto;
 
+import com.example.joinandlogin.util.code.AuthTypeCode;
 import com.example.joinandlogin.util.code.TelecomCode;
 import lombok.Getter;
 
 import javax.validation.constraints.NotBlank;
 
-@Data
+@Getter
 public class JoinPhoneAuthReqDto {
 
     @NotBlank
@@ -13,5 +14,8 @@ public class JoinPhoneAuthReqDto {
 
     @NotBlank
     private String phoneNumber;
+
+    @NotBlank
+    private AuthTypeCode authTypeCode = AuthTypeCode.JOIN;
 
 }

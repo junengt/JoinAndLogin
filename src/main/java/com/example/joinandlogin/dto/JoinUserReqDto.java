@@ -1,6 +1,6 @@
 package com.example.joinandlogin.dto;
 
-import lombok.Data;
+import lombok.Getter;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
@@ -16,11 +16,9 @@ public class JoinUserReqDto {
     private String email;
 
     @NotBlank
-    @Size(min = 4, max = 16)
     private String nickname;
 
     @NotBlank
-    @Size(min = 8)
     private String password;
 
     @NotBlank
