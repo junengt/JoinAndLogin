@@ -1,5 +1,6 @@
 package com.example.joinandlogin.domain;
 
+import com.example.joinandlogin.domain.common.BaseEntity;
 import com.example.joinandlogin.dto.JoinPhoneAuthReqDto;
 import com.example.joinandlogin.util.code.AuthTypeCode;
 import com.example.joinandlogin.util.code.TelecomCode;
@@ -10,7 +11,7 @@ import javax.persistence.*;
 @Entity
 @Table(name = "phone_auth")
 @Getter
-public class PhoneAuth {
+public class PhoneAuth extends BaseEntity {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "phone_auth_id")
@@ -35,7 +36,8 @@ public class PhoneAuth {
     private User user;
 
     //회원 가입 휴대전화 인증 정보 생성자
-    public PhoneAuth(JoinPhoneAuthReqDto joinPhoneAuthReqDto, String encodedPhoneNumber, String authentication) {
+    public PhoneAuth(JoinPhoneAuthReqDto joinPhoneAuthReqDto, String encryptedPhoneNumber, String authentication,
+                     AuthTypeCode authTypeCode) {
         this.telecomCode = joinPhoneAuthReqDto.getTelecomCode();
         this.encryptedPhoneNumber = encryptedPhoneNumber;
         this.authentication = authentication;
